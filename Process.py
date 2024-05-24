@@ -17,6 +17,18 @@ u.append(u2)
 u3 = User("U3",4,1100) 
 u.append(u3)
 
+def compare_by_name_user(u):
+    return u.User_Name
+
+def compare_by_name_ks(ks):
+    return ks.Hotel_Name_Room
+
+def compare_by_rating_ks(ks):
+    return ks.Rating
+
+def compare_by_Room_Available_ks(ks):
+    return ks.Room_Available
+
 while True:
     print('''chọn chức năng: 
           0. Thoát
@@ -24,6 +36,11 @@ while True:
           2. Thêm thông tin quản lí (Khách hàng hoặc Khách sạn)
           3. Xoá thông tin quản lí (Khách hàng hoặc Khách sạn)
           4. Sửa thông tin quản lí (Khách hàng và Khách sạn)
+          5. Sắp xếp theo tên (Khách sạn)
+          6. Sắp xếp theo hạng cao nhất (Khách sạn)
+          7. In ra dữ liệu khách sạn cho vị trí Bangalore
+          8. Sắp xếp theo số phòng tối đa có sẵn (Khách sạn)
+          9. In dữ liệu đặt chổ người dùng
           ''')
     chon = input('Bạn chức năng nào:  ')
     if(chon.isdigit()):
@@ -42,7 +59,7 @@ while True:
                 for x in u:
                     x.display()
         elif (chon == 2):
-            print(''' Vui lòng chọn chức năng: 1. Thêm Khách sạn  \t 2.Thêm khách hàng ''')
+            print('''Vui lòng chọn chức năng: \n\t1. Thêm Khách sạn  \n\t2.Thêm khách hàng ''')
             choose = int(input('Chọn chức năng: '))
             if( choose == 1):
                 Hotel_Name = input('Please press hotel name: ')
@@ -58,7 +75,7 @@ while True:
                 u.append(User(User_Name,User_ID,Cost)) 
             else: print("Chọn lại chức năng khác")      
         elif (chon == 3):
-                print(''' Vui lòng chọn chức năng: 1. Xoá Khách sạn  \t 2.Xoá khách hàng ''')
+                print('''Vui lòng chọn chức năng: \n\t1. Xoá Khách sạn  \n\t2.Xoá khách hàng ''')
                 choose = int(input('Chọn chức năng: '))
                 if(choose == 1 ):
                     id = input("Nhập Tên phòng: ")
@@ -73,7 +90,7 @@ while True:
                      
                 else: print("Chọn lại chức năng")  
         elif (chon == 4):
-            print(''' Vui lòng chọn chức năng: 1. Sửa thông tin Khách sạn  \t 2.Sửa thông tin khách hàng ''')
+            print('''Vui lòng chọn chức năng: \n\t1. Sửa thông tin Khách sạn  \n\t2.Sửa thông tin khách hàng ''')
             choose = int(input('Chọn chức năng: '))
             if(choose == 1):
                 id = input("Nhập Tên phòng muôn sửa: ")
@@ -84,15 +101,37 @@ while True:
                         i.set_Location(input('Please press location room:  '))
                         i.set_Rating(int(input('Please rate the quanlity of the hotel: ')))
                         i.set_Price_per(int(input('Please press price of the hotel: ')))
-                 
             elif choose == 2:
                 UserID = int(input("Nhập ID Khách hàng:"))
                 for x in u:
                     if x.User_ID == UserID:
                         x.set_User_Name(input("Please press Ussername: "))
                         x.set_Booking_cost(int(input("Please cost your room: ")))
+        
+            else: print("Chọn lại chức năng")  
+        elif (chon == 5):
+            sorted_ks = sorted(ks, key=compare_by_name_ks)   
+            for ks in sorted_ks:
+                print("  ", ks.Hotel_Name_Room, ks.Room_Available, ks.Location, ks.Rating, ks.Price_per)
+        elif (chon == 6):
+            sorted_ks = sorted(ks, key=compare_by_rating_ks, reverse=True)   
+            for ks in sorted_ks:
+                print("  ", ks.Hotel_Name_Room, ks.Room_Available, ks.Location, ks.Rating, ks.Price_per)
+        elif (chon == 7):
+            sorted_ks = sorted(ks, key=compare_by_name_ks)   
+            for ks in sorted_ks:
+                if (ks.Location == "Bangalore"):
+                    print("  ", ks.Hotel_Name_Room, ks.Room_Available, ks.Location, ks.Rating, ks.Price_per)
+        elif (chon == 8):
+            sorted_ks = sorted(ks, key=compare_by_Room_Available_ks, reverse=True)   
+            for ks in sorted_ks:
+                print("  ", ks.Hotel_Name_Room, ks.Room_Available, ks.Location, ks.Rating, ks.Price_per)
+        elif (chon == 9):
+            sorted_user = sorted(u, key=compare_by_name_user)
+            for user in sorted_user:
+                print("  ", user.User_Name, user.User_ID, user.Booking_cost)
                 
-            else: print("Chọn lại chức năng")           
+            
     else:
         print('Vui lòng chọn lại')
 
