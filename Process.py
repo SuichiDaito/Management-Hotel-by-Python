@@ -40,7 +40,6 @@ while True:
           6. Sắp xếp theo hạng cao nhất (Khách sạn)
           7. In ra dữ liệu khách sạn cho vị trí Bangalore
           8. Sắp xếp theo số phòng tối đa có sẵn (Khách sạn)
-          9. In dữ liệu đặt chổ người dùng
           ''')
     chon = input('Bạn chức năng nào:  ')
     if(chon.isdigit()):
@@ -110,28 +109,28 @@ while True:
         
             else: print("Chọn lại chức năng")  
         elif (chon == 5):
+            print("SORT BY NAME:")
             sorted_ks = sorted(ks, key=compare_by_name_ks)   
             for ks in sorted_ks:
                 print("  ", ks.Hotel_Name_Room, ks.Room_Available, ks.Location, ks.Rating, ks.Price_per)
         elif (chon == 6):
+            print("SORT BY A RATING:")
             sorted_ks = sorted(ks, key=compare_by_rating_ks, reverse=True)   
             for ks in sorted_ks:
                 print("  ", ks.Hotel_Name_Room, ks.Room_Available, ks.Location, ks.Rating, ks.Price_per)
         elif (chon == 7):
+            print("HOTEL FOR Bangalore LOCATION IS: ")
             sorted_ks = sorted(ks, key=compare_by_name_ks)   
             for ks in sorted_ks:
                 if (ks.Location == "Bangalore"):
                     print("  ", ks.Hotel_Name_Room, ks.Room_Available, ks.Location, ks.Rating, ks.Price_per)
         elif (chon == 8):
+            print("SORT BY ROOM AVAILABLE:")
             sorted_ks = sorted(ks, key=compare_by_Room_Available_ks, reverse=True)   
             for ks in sorted_ks:
                 print("  ", ks.Hotel_Name_Room, ks.Room_Available, ks.Location, ks.Rating, ks.Price_per)
-        elif (chon == 9):
-            sorted_user = sorted(u, key=compare_by_name_user)
-            for user in sorted_user:
-                print("  ", user.User_Name, user.User_ID, user.Booking_cost)
-                
-            
+                     
+           
     else:
         print('Vui lòng chọn lại')
 
